@@ -166,7 +166,7 @@ DEFAULT_FROM_EMAIL = str(os.environ.get('EMAIL_ACCOUNT'))
 EMAIL_HOST_USER = str(os.environ.get('EMAIL_ACCOUNT'))
 EMAIL_HOST_PASSWORD = str(os.environ.get('EMAIL_PASSWORD'))
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_PORT = 587
 SERVER_EMAIL = str(os.environ.get('EMAIL_ACCOUNT'))
 

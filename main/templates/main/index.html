@@ -172,9 +172,9 @@
         </div>
         <div class="row">
             <div class="column eight wide">
-                <h2>A maior comunidade da interweb</h2>
+                <h2>A comunidade da interweb</h2>
                 <p>O Spotted é muito mais que uma página de Facebook.</p>
-                <p>Com sua ajuda, o Spotted compartilha amor atingindo centenas de pessoas diariamente com spotteds apaixonados.</p>
+                <p>Com sua ajuda, o Spotted compartilha o amor de pessoas diariamente com spotteds apaixonados.</p>
                 {% if not user.is_authenticated %}<p>Se você ainda não faz parte dessa comunidade, <a href="{% url 'custom_auth:facebook_login' %}">entre agora</a>.{% endif %}
             </div>
         </div>
@@ -185,7 +185,7 @@
     <div class="ui three column centered grid stackable container">
         <div class="ui column aligned center">
             <h3>
-                A maior comunidade de crushes da interweb
+                A comunidade de crushes da interweb
             </h3>
             <p>
                 À sua disposição na distância de um click
@@ -223,7 +223,7 @@
 <div id='contact' class="ui vertical inverted blue stripe segment">
     <div class="ui text container center aligned">
         <h3 class="ui inverted header">Contato</h3>
-        <p style="font-size: smaller">Tem alguma sugestão, crítica ou declaração? Nos contate agora mesmo!</p>
+        <p style="font-size: smaller">Tem alguma sugestão, crítica ou declaração? Nos contate agora mesmo! Envie um e-mail para:</p>
         <p style="font-size: smaller; color: black">{{ contactemail }}</p>
     </div>
     <br>
@@ -259,7 +259,8 @@
 
             <div style="text-align: center;">
                 <br>
-                <button class="ui big button black" type="submit">Enviar</button>
+				<p style="font-size: smaller">Contato pelo site temporariamente desativado (* -_-)</p>
+                 <!-- <button class="ui big button black" type="submit">Desativado </button> -->
             </div>
         </form>
     </div>

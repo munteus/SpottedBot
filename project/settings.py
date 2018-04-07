@@ -27,6 +27,7 @@ SECRET_KEY = str(os.environ.get('DJANGO_SECRET'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = eval(str(os.environ.get('DEBUG', 'False')).capitalize())
+TEST_MODE = eval(str(os.environ.get('TEST_MODE', 'False')).capitalize())
 
 ALLOWED_HOSTS = ['*']
 
@@ -183,7 +184,7 @@ FACEBOOK_PAGE_TOKEN = os.environ.get('FACEBOOK_PAGE_TOKEN')
 FACEBOOK_PERMISSIONS = []
 
 # Page Stuff
-INITIAL_COUNT = os.environ.get('INITIAL_COUNT')
+INITIAL_COUNT = int(os.environ.get('INITIAL_COUNT', '0'))
 
 # Google Captcha stuff
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')

@@ -86,7 +86,6 @@ class FacebookUser(models.Model):
             obj.first_name = first_name
             obj.name = name
             obj.link = link
-            print('USER UPDATED')
 
         else:
             def f_usname(name, n=0):
@@ -109,6 +108,5 @@ class FacebookUser(models.Model):
                 name=name,
                 link=link
             )
-            print('USER CREATED')
         obj.save()
         return obj

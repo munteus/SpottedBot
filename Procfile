@@ -1,2 +1,3 @@
 web: gunicorn project.wsgi --log-file -
-release: python manage.py migrate --noinput
+worker: celery -A project worker -l info
+release: python manage.py migrate

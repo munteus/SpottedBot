@@ -18,6 +18,9 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+# Website root url
+ROOT_URL = os.environ.get('ROOT_URL', 'localhost:8000')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -27,6 +30,8 @@ SECRET_KEY = str(os.environ.get('DJANGO_SECRET'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = eval(str(os.environ.get('DEBUG', 'False')).capitalize())
+
+# manage.py test mode that disables fb connection stuff
 TEST_MODE = eval(str(os.environ.get('TEST_MODE', 'False')).capitalize())
 
 ALLOWED_HOSTS = ['*']
@@ -47,9 +52,14 @@ INSTALLED_APPS = [
     'spotteds',
     'moderation',
     'api',
+    'chatbot',
 
     'captcha',
 ]
+
+if DEBUG:
+    INSTALLED_APPS.append('sslserver')
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,6 +87,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'main.context_processors.enable_mod_shift',
                 'main.context_processors.enable_imgur_upload',
+                'main.context_processors.enable_recaptcha',
                 'main.context_processors.enable_ad_tag',
                 'main.context_processors.ad_slot',
                 'main.context_processors.enable_coinhive'
@@ -159,7 +170,7 @@ DATABASES['default'].update(db_from_env)
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/auth/facebook/login/'
 LOGIN_REDIRECT_URL = '/dashboard/'
 
 DEFAULT_CONTACT_EMAIL = str(os.environ.get('EMAIL_ACCOUNT'))
@@ -181,6 +192,8 @@ ENABLE_MOD_SHIFT = False
 FACEBOOK_KEY = os.environ.get('FACEBOOK_KEY')
 FACEBOOK_SECRET = os.environ.get('FACEBOOK_SECRET')
 FACEBOOK_PAGE_TOKEN = os.environ.get('FACEBOOK_PAGE_TOKEN')
+FACEBOOK_USE_CHATBOT = eval(os.environ.get('FACEBOOK_USE_CHATBOT', 'false').capitalize())
+FACEBOOK_VERIFY_CHATBOT = os.environ.get('FACEBOOK_VERIFY_CHATBOT', 'abc')
 FACEBOOK_PERMISSIONS = []
 
 # Page Stuff
@@ -192,8 +205,8 @@ RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 NOCAPTCHA = True
 
 # Imgur stuff
-IMGUR_CLIENT = os.environ.get('IMGUR_CLIENT', False)
-IMGUR_SECRET = os.environ.get('IMGUR_SECRET', False)
+IMGUR_CLIENT = os.environ.get('IMGUR_CLIENT')
+IMGUR_SECRET = os.environ.get('IMGUR_SECRET')
 
 # Web Of Trust
 WOT_SECRET = os.environ.get('WOT_SECRET')
@@ -202,8 +215,11 @@ WOT_SECRET = os.environ.get('WOT_SECRET')
 GSB_SECRET = os.environ.get('GSB_SECRET')
 
 # Spotted API
-SPOTTED_API_URL = "http://spottedapi.herokuapp.com"
+SPOTTED_API_URL = os.environ.get('SPOTTED_API_URL', "http://spottedapi.herokuapp.com")
 SPOTTED_API_SECRET = os.environ.get('SPOTTED_API_SECRET')
+
+# Celery stuff
+CELERY_BROKER_URL = str(os.environ.get('REDIS_URL'))
 
 # Adsense
 

@@ -1,9 +1,9 @@
 // Automatically shows on init if cookie isnt set
 
-var nag_id = 'db_migration_nag';
+var nag_id = 'no_images_upload';
 var nag_value = true;
 var notification_is_active = true;
-var notification_text = '<b>Importante!</b> O Spotted estará em manutenção amanhã!';
+var notification_text = 'Não é possível fazer o upload de imagens temporariamente. (* -_-)';
 // <a style="color: silver" href="#" onclick="$(' + "'#notification_modal'" + ').modal(' + "'show'" +')">Mais Informações</a>
 var notification_modal_header = "Olá :)";
 var notification_modal_content = '\
